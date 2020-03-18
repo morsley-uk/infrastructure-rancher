@@ -1,0 +1,10 @@
+﻿.idea
+.terraform
+*.tfstate*
+*.tfstate.backup
+*.tfvars
+terraform-provider*
+*.rkestate
+*morsley-io-kube-config.yaml
+*.pem
+*.pub
