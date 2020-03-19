@@ -32,7 +32,7 @@ output "rancher-cluster-yaml-o" {
 
 output "rancher-cluster-yaml" {
 
-  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
+  value = data.aws_s3_bucket_object.rancher-cluster-yaml
 
 }
 
