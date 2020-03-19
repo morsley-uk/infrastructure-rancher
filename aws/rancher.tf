@@ -17,10 +17,23 @@ data "aws_s3_bucket_object" "rancher-cluster-yaml" {
   
 }
 
+data "aws_s3_bucket_object" "node-public-dns" {
+
+  bucket = var.bucket_name
+  key = "/${var.name}/node-public-dns.txt"
+
+}
+
 output "rancher-cluster-yaml" {
   
   value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
   
+}
+
+output "node-public-dns" {
+
+  value = data.aws_s3_bucket_object.node-public-dns.body
+
 }
 
 //resource "null_resource" "install-rancher" {
