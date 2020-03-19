@@ -24,10 +24,22 @@ data "aws_s3_bucket_object" "node-public-dns" {
 
 }
 
+output "rancher-cluster-yaml-o" {
+  
+  value = data.aws_s3_bucket_object.rancher-cluster-yaml
+  
+}
+
 output "rancher-cluster-yaml" {
-  
+
   value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
-  
+
+}
+
+output "node-public-dns-o" {
+
+  value = data.aws_s3_bucket_object.node-public-dns
+
 }
 
 output "node-public-dns" {
