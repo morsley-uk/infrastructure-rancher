@@ -13,7 +13,7 @@
 data "aws_s3_bucket_object" "rancher-cluster-yaml" {
   
   bucket = var.bucket_name
-  key = "/${var.name}/kube_config.yaml" # rancher/kube-config.yaml
+  key = "/${var.name}/kube_config.yaml"
   
 }
 
