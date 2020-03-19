@@ -18,10 +18,10 @@ terraform {
 
   backend "s3" {
     bucket         = "morsley-io-terraform"
-    key            = "infrastructure"
+    key            = "infrastructure-rancher"
     region         = "eu-west-2"
-    dynamodb_table = "tfstatelock-rancher"
-    encypt         = true
+    dynamodb_table = "morsley-io-tfstatelock-rancher"
+    encrypt        = true
   }
 
 }
