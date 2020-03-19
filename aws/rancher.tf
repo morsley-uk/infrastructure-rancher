@@ -17,6 +17,13 @@ data "aws_s3_bucket_object" "rancher-cluster-yaml" {
   
 }
 
+resource "local_file" "kube-config-yaml" {
+  
+  content = data.aws_s3_bucket_object.rancher-cluster-yaml.body
+  filename = "${path.cwd}/rancher/kube_config.yaml"
+  
+}
+
 data "aws_s3_bucket_object" "node-public-dns" {
 
   bucket = var.bucket_name
@@ -24,17 +31,25 @@ data "aws_s3_bucket_object" "node-public-dns" {
 
 }
 
+resource "local_file" "node-public-dns" {
+
+  content = data.aws_s3_bucket_object.node-public-dns.body
+  filename = "${path.cwd}/rancher/node-public-dns.txt"
+
+}
+
+
 //output "rancher-cluster-yaml-o" {
 //  
 //  value = data.aws_s3_bucket_object.rancher-cluster-yaml
 //  
 //}
 
-output "rancher-cluster-yaml" {
-
-  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
-
-}
+//output "rancher-cluster-yaml" {
+//
+//  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
+//
+//}
 
 //output "node-public-dns-o" {
 //
@@ -42,11 +57,11 @@ output "rancher-cluster-yaml" {
 //
 //}
 
-output "node-public-dns" {
-
-  value = data.aws_s3_bucket_object.node-public-dns.body
-
-}
+//output "node-public-dns" {
+//
+//  value = data.aws_s3_bucket_object.node-public-dns.body
+//
+//}
 
 //resource "null_resource" "install-rancher" {
 //
