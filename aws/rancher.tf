@@ -17,17 +17,16 @@ data "aws_s3_bucket_object" "rancher-cluster-yaml" {
   
 }
 
-output "rancher-kube-config" {
+output "rancher-cluster-yaml" {
   
-  value = data.aws_s3_bucket_object.rancher-cluster-yaml
+  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
   
 }
 
 //resource "null_resource" "install-rancher" {
 //
 //  depends_on = [
-//    local_file.kube-config-yaml#,
-//    #null_resource.is-cluster-ready
+//    data.aws_s3_bucket_object.rancher-cluster-yaml
 //  ]
 //
 //  connection {
