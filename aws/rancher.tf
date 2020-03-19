@@ -27,33 +27,34 @@ resource "local_file" "kube-config-yaml" {
 data "aws_s3_bucket_object" "node-public-dns" {
 
   bucket = var.bucket_name
-  key = "/${var.name}/node-public-dns.txt"
+  key = "/${var.name}/node_public_dns.txt"
 
 }
 
 resource "local_file" "node-public-dns" {
 
   content = data.aws_s3_bucket_object.node-public-dns.body
-  filename = "${path.cwd}/rancher/node-public-dns.txt"
+  filename = "${path.cwd}/rancher/node_public_dns.txt"
 
 }
 
+data "aws_s3_bucket_object" "node-private-key" {
 
-//output "rancher-cluster-yaml-o" {
-//  
-//  value = data.aws_s3_bucket_object.rancher-cluster-yaml
-//  
-//}
+  bucket = var.bucket_name
+  key = "/${var.name}/node.pem"
+
+}
+
+resource "local_file" "node-private-key" {
+
+  content = data.aws_s3_bucket_object.node-private-key.body
+  filename = "${path.cwd}/rancher/node.pem"
+
+}
 
 //output "rancher-cluster-yaml" {
 //
 //  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
-//
-//}
-
-//output "node-public-dns-o" {
-//
-//  value = data.aws_s3_bucket_object.node-public-dns
 //
 //}
 
@@ -63,23 +64,23 @@ resource "local_file" "node-public-dns" {
 //
 //}
 
-//resource "null_resource" "install-rancher" {
-//
-//  depends_on = [
-//    data.aws_s3_bucket_object.rancher-cluster-yaml
-//  ]
-//
-//  connection {
-//    type        = "ssh"
-//    host        = aws_instance.k8s.public_ip
-//    user        = "ubuntu"
-//    private_key = join("", tls_private_key.node_key.*.private_key_pem)
-//  }
-//
-//  # https://www.terraform.io/docs/provisioners/local-exec.html
-//
-//  provisioner "local-exec" {
-//    command = "chmod +x scripts/install_rancher.sh && bash scripts/install_rancher.sh"
-//  }
-//
-//}
+resource "null_resource" "install-rancher" {
+
+  depends_on = [
+    data.aws_s3_bucket_object.rancher-cluster-yaml
+  ]
+
+  connection {
+    type        = "ssh"
+    host        = data.aws_s3_bucket_object.node-public-dns.body
+    user        = "ubuntu"
+    private_key = data.aws_s3_bucket_object.node-private-key.body
+  }
+
+  # https://www.terraform.io/docs/provisioners/local-exec.html
+
+  provisioner "local-exec" {
+    command = "chmod +x scripts/install_rancher.sh && bash scripts/install_rancher.sh"
+  }
+
+}
