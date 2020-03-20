@@ -4,7 +4,6 @@
 *.tfstate.backup
 *.tfvars
 terraform-provider*
-*.rkestate
 kube_config.yaml
 *.pem
 *.pub
