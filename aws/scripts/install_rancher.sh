@@ -10,9 +10,11 @@
                                         
 # Install Rancher via Helm
 
-export KUBECONFIG=$(pwd)/rancher/kube-config.yaml
+export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
 
 kubectl get nodes
+
+# chmod 400 $(pwd)/rancher/node.pem
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
 
