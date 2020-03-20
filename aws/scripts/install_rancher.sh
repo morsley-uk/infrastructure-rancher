@@ -12,9 +12,9 @@
 
 export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
 
-kubectl get nodes
+#kubectl get nodes
 
-# chmod 400 $(pwd)/rancher/node.pem
+chmod 400 $(pwd)/rancher/node.pem
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
 

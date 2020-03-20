@@ -68,7 +68,7 @@ resource "null_resource" "install-rancher" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "chmod +x scripts/install_rancher.sh && bash scripts/install_rancher.sh"
+    command = "chmod 400 rancher/node.pem && chmod +x scripts/install_rancher.sh && bash scripts/install_rancher.sh"
   }
 
 }
