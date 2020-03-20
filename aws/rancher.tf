@@ -52,18 +52,6 @@ resource "local_file" "node-private-key" {
 
 }
 
-//output "rancher-cluster-yaml" {
-//
-//  value = data.aws_s3_bucket_object.rancher-cluster-yaml.body
-//
-//}
-
-//output "node-public-dns" {
-//
-//  value = data.aws_s3_bucket_object.node-public-dns.body
-//
-//}
-
 resource "null_resource" "install-rancher" {
 
   depends_on = [
