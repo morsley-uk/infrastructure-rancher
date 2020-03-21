@@ -57,9 +57,10 @@ helm repo update
 helm install rancher rancher-stable/rancher \
   --version v2.3.5 \
   --namespace cattle-system \
-  --set hostname=https://rancher.morsley.io \
+  --set hostname=rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
+  --set addLocal=true \
   --wait
 
 # https://whynopadlock.com
