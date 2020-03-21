@@ -29,7 +29,8 @@ kubectl create namespace cattle-system
 # --- Cert-Manager ---
 
 # Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
+#kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
 
 # Create the namespace for cert-manager
 kubectl create namespace cert-manager
@@ -42,17 +43,13 @@ helm repo update
 
 # Install the cert-manager Helm chart
 helm install cert-manager jetstack/cert-manager \
-  --version v0.14.0 \
+  --version v0.12.0 \
   --namespace cert-manager \
   --wait
   
 # --- Cert-Manager ---
 
 # 4. Install Rancher with Helm and the chosen certificate option
-
-helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-
-helm repo update
 
 helm install rancher rancher-stable/rancher \
   --version v2.3.5 \
