@@ -35,3 +35,7 @@ https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/
 2. Create a Rancher namespace.
 3. Install Cert-Manager (Let's Encrypt).
 4. Install Rancher with Helm.
+
+Troubleshooting:
+
+https://rancher.com/docs/rancher/v2.x/en/installation/options/troubleshooting/

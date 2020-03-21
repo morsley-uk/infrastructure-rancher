@@ -62,3 +62,5 @@ helm install rancher rancher-stable/rancher \
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/
+
+# https://rancher.com/docs/rancher/v2.x/en/installation/options/troubleshooting/
