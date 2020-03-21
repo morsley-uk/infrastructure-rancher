@@ -29,7 +29,7 @@ kubectl create namespace cattle-system
 # --- Cert-Manager ---
 
 # Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.13.1/deploy/manifests/00-crds.yaml
+kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
 
 # Create the namespace for cert-manager
 kubectl create namespace cert-manager
@@ -57,7 +57,7 @@ helm repo update
 helm install rancher rancher-stable/rancher \
   --version v2.3.5 \
   --namespace cattle-system \
-  --set hostname=rancher.morsley.io \
+  --set hostname=https://rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
   --wait
