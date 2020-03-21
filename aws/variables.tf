@@ -15,10 +15,6 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
-#variable "key_name" {
-#  default = "morsley-io-rancher-k8s"
-#}
-
 variable "name" {
   default = "rancher"
 }
@@ -26,24 +22,3 @@ variable "name" {
 variable "bucket_name" {
   default = "morsley-io"
 }
-
-#variable "kube_config_filename" {
-#  default = "morsley-io-rancher-kube-config.yaml"
-#}
-
-#variable "instance_type" {
-#  default = "t2.2xlarge" # 8 vCPUs, 32 GB RAM
-#}
-
-#variable "cluster_name" {
-#  default = "morsley-io"
-#}
-
-# ToDo --> use throughout
-#variable "hostname" {
-#  default = "rancher.morsley.io"
-#}
-
-#variable "domain_name" {
-#  default = "morsley.io"
-#}
