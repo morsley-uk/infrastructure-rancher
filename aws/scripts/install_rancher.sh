@@ -39,20 +39,13 @@ helm repo update
 
 kubectl create namespace cattle-system
 
-#helm install rancher rancher-stable/rancher \
-#  --version v2.3.5 \
-#  --namespace cattle-system \
-#  --set hostname=rancher.morsley.io \
-#  --set ingress.tls.source=letsEncrypt \
-#  --set letsEncrypt.email=letsencrypt@morsley.uk \
-#  --set addLocal=true \
-#  --wait
-
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
+  --version v2.3.5 \
   --set hostname=rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
+  --set addLocal=true \
   --wait
 
 kubectl -n cattle-system rollout status deploy/rancher
