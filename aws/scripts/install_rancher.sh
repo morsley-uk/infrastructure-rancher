@@ -16,8 +16,7 @@ chmod 400 $(pwd)/rancher/node.pem
 
 # Cert-Manager...
 
-#kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml
 
 kubectl create namespace cert-manager
 
@@ -26,7 +25,7 @@ helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
 helm install cert-manager jetstack/cert-manager \
-  --version v0.12.0 \
+  --version v0.13.1 \
   --namespace cert-manager \
   --wait
 
