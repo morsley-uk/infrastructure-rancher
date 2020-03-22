@@ -14,51 +14,49 @@ chmod 400 $(pwd)/rancher/node.pem
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
 
-# 1. Add the Helm chart repository...
+# Cert-Manager...
+
+#kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
+
+kubectl create namespace cert-manager
+
+helm repo add jetstack https://charts.jetstack.io
+
+helm repo update
+
+helm install cert-manager jetstack/cert-manager \
+  --version v0.12.0 \
+  --namespace cert-manager \
+  --wait
+
+kubectl get pods --namespace cert-manager
+  
+# Rancher...
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
-# 2. Create a namespace for Rancher...
+helm repo update
 
 kubectl create namespace cattle-system
 
-# 3. Choose your SSL configuration...
-
-# We are going to try 'Rancher Generated Certificates' first, but once this is working, we'll try 'Let's Encrypt'.
-
-# --- Cert-Manager ---
-
-# Install the CustomResourceDefinition resources separately
-#kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/v0.14.0/deploy/manifests/00-crds.yaml
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13.1/deploy/manifests/00-crds.yaml
-
-# Create the namespace for cert-manager
-kubectl create namespace cert-manager
-
-# Add the Jetstack Helm repository
-helm repo add jetstack https://charts.jetstack.io
-
-# Update your local Helm chart repository cache
-helm repo update
-
-# Install the cert-manager Helm chart
-helm install cert-manager jetstack/cert-manager \
-  --version v0.13.1 \
-  --namespace cert-manager \
-  --wait
-  
-# --- Cert-Manager ---
-
-# 4. Install Rancher with Helm and the chosen certificate option
+#helm install rancher rancher-stable/rancher \
+#  --version v2.3.5 \
+#  --namespace cattle-system \
+#  --set hostname=rancher.morsley.io \
+#  --set ingress.tls.source=letsEncrypt \
+#  --set letsEncrypt.email=letsencrypt@morsley.uk \
+#  --set addLocal=true \
+#  --wait
 
 helm install rancher rancher-stable/rancher \
-  --version v2.3.5 \
   --namespace cattle-system \
   --set hostname=rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
-  --set addLocal=true \
   --wait
+
+kubectl -n cattle-system rollout status deploy/rancher
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/
