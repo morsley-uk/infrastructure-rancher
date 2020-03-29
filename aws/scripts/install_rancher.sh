@@ -15,15 +15,6 @@ chmod 400 $(pwd)/rancher/node.pem
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
 
-# Rancher...
-
-#helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-#helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
-
-#helm repo update
-
-#kubectl create namespace cattle-system
-
 # Cert-Manager...
 
 kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
@@ -44,7 +35,6 @@ kubectl get pods --namespace cert-manager
 # Rancher...
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-#helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 
 helm repo update
 
