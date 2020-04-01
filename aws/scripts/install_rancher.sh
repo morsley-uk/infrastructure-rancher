@@ -50,13 +50,14 @@ kubectl create namespace cattle-system
 
 helm install rancher rancher-latest/rancher \
   --namespace cattle-system \
+  --version v2.4.0
   --set hostname=rancher.morsley.io \
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=letsencrypt@morsley.uk \
   --set letsEncrypt.environment=staging \
   --wait
 
-kubectl -n cattle-system rollout status deploy/rancher
+kubectl --namespece cattle-system rollout status deploy/rancher
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/
