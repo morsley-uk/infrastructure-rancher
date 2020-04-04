@@ -11,7 +11,7 @@
 # Install Rancher via Helm
                                         
 export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
-chmod 400 $(pwd)/rancher/node.pem
+#chmod 400 $(pwd)/rancher/node.pem
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/helm-rancher/
 
@@ -48,16 +48,20 @@ kubectl create namespace cattle-system
 #  --set letsEncrypt.email=letsencrypt@morsley.uk \
 #  --wait
 
-helm install rancher rancher-latest/rancher \
-  --namespace cattle-system \
-  --version v2.4.0
-  --set hostname=rancher.morsley.io \
-  --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=letsencrypt@morsley.uk \
-  --set letsEncrypt.environment=staging \
-  --wait
+#helm install rancher rancher-stable/rancher \
+#  --namespace cattle-system \
+#  --version v2.4.0 \
+#  --set hostname=rancher.morsley.io \
+#  --set ingress.tls.source=letsEncrypt \
+#  --set letsEncrypt.email=letsencrypt@morsley.uk \
+#  --set letsEncrypt.environment=staging
 
-kubectl --namespece cattle-system rollout status deploy/rancher
+helm install rancher rancher-stable/rancher \
+  --namespace cattle-system \
+  --version v2.4.0 \
+  --set ingress.tls.source=rancher
+
+kubectl get pods --namespace cattle-system
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/

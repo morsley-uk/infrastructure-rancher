@@ -58,12 +58,12 @@ resource "null_resource" "install-rancher" {
     data.aws_s3_bucket_object.rancher-cluster-yaml
   ]
 
-  connection {
-    type        = "ssh"
-    host        = data.aws_s3_bucket_object.node-public-dns.body
-    user        = "ubuntu"
-    private_key = data.aws_s3_bucket_object.node-private-key.body
-  }
+//  connection {
+//    type        = "ssh"
+//    host        = data.aws_s3_bucket_object.node-public-dns.body
+//    user        = "ubuntu"
+//    private_key = data.aws_s3_bucket_object.node-private-key.body
+//  }
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
