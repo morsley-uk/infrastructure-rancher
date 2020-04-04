@@ -27,7 +27,7 @@ resource "local_file" "kube-config-yaml" {
 data "aws_s3_bucket_object" "node-public-dns" {
 
   bucket = local.bucket_name
-  key = "/${var.name}/node_public_dns.txt"
+  key = "/${var.cluster_name}/node_public_dns.txt"
 
 }
 
@@ -41,7 +41,7 @@ resource "local_file" "node-public-dns" {
 data "aws_s3_bucket_object" "node-private-key" {
 
   bucket = local.bucket_name
-  key = "/${var.name}/node.pem"
+  key = "/${var.cluster_name}/node.pem"
 
 }
 
