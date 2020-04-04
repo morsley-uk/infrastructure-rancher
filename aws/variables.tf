@@ -19,6 +19,10 @@ variable "name" {
   default = "rancher"
 }
 
-variable "bucket_name" {
-  default = "morsley-io"
+variable "cluster_name" {
+  default = "cluster"
+}
+
+variable "domain" {
+  default = "morsley.io"
 }

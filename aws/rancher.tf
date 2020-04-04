@@ -12,21 +12,21 @@
 
 data "aws_s3_bucket_object" "rancher-cluster-yaml" {
   
-  bucket = var.bucket_name
-  key = "/${var.name}/kube_config.yaml"
+  bucket = local.bucket_name
+  key = "/${var.cluster_name}/kube_config.yaml"
   
 }
 
 resource "local_file" "kube-config-yaml" {
   
   content = data.aws_s3_bucket_object.rancher-cluster-yaml.body
-  filename = "${path.cwd}/rancher/kube_config.yaml"
+  filename = "${path.cwd}/${var.name}/kube_config.yaml"
   
 }
 
 data "aws_s3_bucket_object" "node-public-dns" {
 
-  bucket = var.bucket_name
+  bucket = local.bucket_name
   key = "/${var.name}/node_public_dns.txt"
 
 }
@@ -34,13 +34,13 @@ data "aws_s3_bucket_object" "node-public-dns" {
 resource "local_file" "node-public-dns" {
 
   content = data.aws_s3_bucket_object.node-public-dns.body
-  filename = "${path.cwd}/rancher/node_public_dns.txt"
+  filename = "${path.cwd}/${var.name}/node_public_dns.txt"
 
 }
 
 data "aws_s3_bucket_object" "node-private-key" {
 
-  bucket = var.bucket_name
+  bucket = local.bucket_name
   key = "/${var.name}/node.pem"
 
 }
@@ -48,7 +48,7 @@ data "aws_s3_bucket_object" "node-private-key" {
 resource "local_file" "node-private-key" {
 
   content = data.aws_s3_bucket_object.node-private-key.body
-  filename = "${path.cwd}/rancher/node.pem"
+  filename = "${path.cwd}/${var.name}/node.pem"
 
 }
 
