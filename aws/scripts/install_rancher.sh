@@ -23,20 +23,20 @@ kubectl create namespace cert-manager
 
 helm repo add jetstack https://charts.jetstack.io
 
-helm repo update
+#helm repo update
 
 helm install cert-manager jetstack/cert-manager \
   --version v0.12.0 \
   --namespace cert-manager \
   --wait
 
-kubectl get pods --namespace cert-manager
+kubectl get all --namespace cert-manager
   
 # Rancher...
 
 helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
-helm repo update
+#helm repo update
 
 kubectl create namespace cattle-system
 
@@ -59,9 +59,9 @@ kubectl create namespace cattle-system
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
   --version v2.4.0 \
-  --set ingress.tls.source=rancher
+  --set hostname=rancher.morsley.io
 
-kubectl get pods --namespace cattle-system
+kubectl get all --namespace cattle-system
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/
