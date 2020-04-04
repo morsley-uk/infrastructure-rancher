@@ -7,9 +7,15 @@
 #    _| |_| | | \__ \ || (_| | | | | | \ \ (_| | | | | (__| | | |  __/ |   
 #   |_____|_| |_|___/\__\__,_|_|_| |_|  \_\__,_|_| |_|\___|_| |_|\___|_|   
 #
-                                                                        
+                                                                                
 # Install Rancher via Helm
-                                        
+        
+echo '###############################################################################'
+echo '# Installing Rancher...'
+echo '###############################################################################'
+
+set -x
+                                               
 export KUBECONFIG=$(pwd)/rancher/kube_config.yaml
 #chmod 400 $(pwd)/rancher/node.pem
 
@@ -58,7 +64,6 @@ kubectl create namespace cattle-system
 
 helm install rancher rancher-stable/rancher \
   --namespace cattle-system \
-  --version v2.4.0 \
   --set hostname=rancher.morsley.io
 
 kubectl get all --namespace cattle-system
@@ -67,3 +72,11 @@ kubectl get all --namespace cattle-system
 # https://www.ssllabs.com/ssltest/
 
 # https://rancher.com/docs/rancher/v2.x/en/installation/options/troubleshooting/
+
+set +x
+
+echo '###############################################################################'
+echo '# Rancher Installed'
+echo '###############################################################################'
+
+exit 0
