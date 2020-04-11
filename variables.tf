@@ -14,10 +14,13 @@ variable "secret_key" {}
 variable "region" {
   default = "eu-west-2" # London
 }
-
-variable "name" {
-  default = "rancher"
+variable "availability_zone" {
+  default = "eu-west-2a" # London
 }
+
+//variable "name" {
+//  default = "rancher"
+//}
 
 variable "cluster_name" {
   default = "cluster"
@@ -25,4 +28,15 @@ variable "cluster_name" {
 
 variable "domain" {
   default = "morsley.io"
+}
+variable "subdomain" {
+  default = "concourse"
+}
+
+variable "vpc_cidr_block" {
+  default = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr_block" {
+  default = "10.0.0.0/24"
 }
