@@ -69,17 +69,17 @@ kubectl create namespace ${NAMESPACE} #cattle-system
 #  --set letsEncrypt.email=letsencrypt@morsley.uk \
 #  --wait
 
-#helm install rancher rancher-stable/rancher \
-#  --namespace cattle-system \
-#  --version v2.4.0 \
-#  --set hostname=rancher.morsley.io \
-#  --set ingress.tls.source=letsEncrypt \
-#  --set letsEncrypt.email=letsencrypt@morsley.uk \
-#  --set letsEncrypt.environment=staging
-
 helm install rancher rancher-stable/rancher \
   --namespace ${NAMESPACE} \
-  --set hostname=${HOSTNAME}
+  --version v2.4.0 \
+  --set hostname=${HOSTNAME} \
+  --set ingress.tls.source=letsEncrypt \
+  --set letsEncrypt.email=letsencrypt@morsley.uk \
+  --set letsEncrypt.environment=staging
+
+#helm install rancher rancher-stable/rancher \
+#  --namespace ${NAMESPACE} \
+#  --set hostname=${HOSTNAME}
 
 #kubectl get all --namespace cattle-system
 
