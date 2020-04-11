@@ -1,4 +1,4 @@
-﻿#     _______                   __
+#     _______                   __
 #   |__   __|                 / _|
 #      | | ___ _ __ _ __ __ _| |_ ___  _ __ _ __ ___
 #      | |/ _ \ '__| '__/ _` |  _/ _ \| '__| '_ ` _ \
@@ -16,12 +16,12 @@ terraform {
     }
   }
 
-//  backend "s3" {
-//    bucket         = "morsley-io-terraform"
-//    key            = "infrastructure-rancher"
-//    region         = "eu-west-2"
-//    dynamodb_table = "morsley-io-tfstatelock-rancher"
-//    encrypt        = true
-//  }
+  //  backend "s3" {
+  //    bucket         = "morsley-io-terraform"
+  //    key            = "infrastructure-rancher"
+  //    region         = "eu-west-2"
+  //    dynamodb_table = "morsley-io-tfstatelock-rancher"
+  //    encrypt        = true
+  //  }
 
 }

@@ -1,4 +1,4 @@
-﻿#   __      __        _       _     _           
+#   __      __        _       _     _           
 #   \ \    / /       (_)     | |   | |          
 #    \ \  / /_ _ _ __ _  __ _| |__ | | ___  ___ 
 #     \ \/ / _` | '__| |/ _` | '_ \| |/ _ \/ __|
@@ -18,19 +18,19 @@ variable "availability_zone" {
   default = "eu-west-2a" # London
 }
 
-//variable "name" {
-//  default = "rancher"
-//}
+variable "namespace" {
+  default = "rancher"
+}
 
 variable "cluster_name" {
-  default = "cluster"
+  default = "rancher-k8s"
 }
 
 variable "domain" {
   default = "morsley.io"
 }
 variable "subdomain" {
-  default = "concourse"
+  default = "rancher"
 }
 
 variable "vpc_cidr_block" {
