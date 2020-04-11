@@ -38,20 +38,20 @@ export KUBECONFIG=${FOLDER}/kube_config.yaml
 
 # Cert-Manager...
 
-#kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.12/deploy/manifests/00-crds.yaml
 
-#kubectl create namespace cert-manager
+kubectl create namespace cert-manager
 
-#helm repo add jetstack https://charts.jetstack.io
+helm repo add jetstack https://charts.jetstack.io
 
 #helm repo update
 
-#helm install cert-manager jetstack/cert-manager \
-#  --version v0.12.0 \
-#  --namespace cert-manager \
-#  --wait
+helm install cert-manager jetstack/cert-manager \
+  --version v0.12.0 \
+  --namespace cert-manager \
+  --wait
 
-#kubectl get all --namespace cert-manager
+kubectl get all --namespace cert-manager
   
 # Rancher...
 

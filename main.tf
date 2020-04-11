@@ -51,7 +51,7 @@ resource "null_resource" "install-rancher" {
 }
 
 # Is Rancher ready...?
-resource "null_resource" "is-concourse-ready" {
+resource "null_resource" "is-rancher-ready" {
 
   depends_on = [
     null_resource.install-rancher
@@ -60,7 +60,7 @@ resource "null_resource" "is-concourse-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.module}/scripts/is_concourse_ready.sh"
+    command = "bash ${path.module}/scripts/is_rancher_ready.sh"
     environment = {
       FOLDER    = "${path.cwd}/${local.folder}"
       NAMESPACE = var.namespace
