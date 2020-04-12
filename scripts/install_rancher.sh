@@ -59,29 +59,24 @@ helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
 
 #helm repo update
 
-kubectl create namespace ${NAMESPACE} #cattle-system
+kubectl create namespace ${NAMESPACE}
 
+# Let's Encrypt --> Production
 #helm install rancher rancher-stable/rancher \
 #  --namespace cattle-system \
-#  --version v2.3.5 \
+#  --version v2.3.6 \
 #  --set hostname=rancher.morsley.io \
 #  --set ingress.tls.source=letsEncrypt \
-#  --set letsEncrypt.email=letsencrypt@morsley.uk \
-#  --wait
+#  --set letsEncrypt.email=letsencrypt@morsley.uk
 
-#  --version v2.4.0 \
+# Let's Encrypt --> Staging
 helm install rancher rancher-stable/rancher \
   --namespace ${NAMESPACE} \
+  --version v2.3.6 \
   --set hostname=${HOSTNAME} \
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=letsencrypt@morsley.uk \
+  --set letsEncrypt.email=letsencrypt@morsley.uk \  
   --set letsEncrypt.environment=staging
-
-#helm install rancher rancher-stable/rancher \
-#  --namespace ${NAMESPACE} \
-#  --set hostname=${HOSTNAME}
-
-#kubectl get all --namespace cattle-system
 
 # https://whynopadlock.com
 # https://www.ssllabs.com/ssltest/
