@@ -64,7 +64,6 @@ kubectl create namespace ${NAMESPACE}
 # Let's Encrypt --> Production
 #helm install rancher rancher-stable/rancher \
 #  --namespace cattle-system \
-#  --version v2.3.6 \
 #  --set hostname=rancher.morsley.io \
 #  --set ingress.tls.source=letsEncrypt \
 #  --set letsEncrypt.email=letsencrypt@morsley.uk
@@ -72,10 +71,9 @@ kubectl create namespace ${NAMESPACE}
 # Let's Encrypt --> Staging
 helm install rancher rancher-stable/rancher \
   --namespace ${NAMESPACE} \
-  --version v2.3.6 \
   --set hostname=${HOSTNAME} \
   --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=letsencrypt@morsley.uk \  
+  --set letsEncrypt.email=letsencrypt@morsley.uk \
   --set letsEncrypt.environment=staging
 
 # https://whynopadlock.com
